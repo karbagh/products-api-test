@@ -1,0 +1,509 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Currency Rates API.",
+        "description": "This API provides access to currency exchange rates for each day. It allows users to retrieve rates of currencies for specific dates and perform other related operations..",
+        "contact": {
+            "email": "shahinyamm@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "http://www.opensource.org/licenses/MIT"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/products?perPage={perPage}&withCategory={withCategory}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get a list of Products",
+                "operationId": "99eb0dcdb49e5ef18684db268f63a8e6",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Count of per page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "20"
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "With Category.",
+                        "required": false,
+                        "schema": {
+                            "type": "bool"
+                        },
+                        "example": "true"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResourceSchema"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        },
+        "/products/{id}?withCategory={withCategory}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get a single Product",
+                "operationId": "c6fdbc5f3013465adb1f87f7eef14bd5",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "With Category.",
+                        "required": false,
+                        "schema": {
+                            "type": "bool"
+                        },
+                        "example": "true"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product ID.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "example": "2268e296-a103-3755-b2a8-7542e0ee2a9e"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResourceSchema"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        },
+        "/products": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "CraetePorudct",
+                "operationId": "947c1d45343a897764d81f086f4eaa2f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductRequestSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResourceSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products/{id}": {
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update Porudct",
+                "operationId": "4b588e8b43d323b4e04a285b9b5619fd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product ID.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "example": "2268e296-a103-3755-b2a8-7542e0ee2a9e"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateProductRequestSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResourceSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Delete Product",
+                "operationId": "f8bbc8b0744e63995c0327033387ec44",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Product ID.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "example": "2268e296-a103-3755-b2a8-7542e0ee2a9e"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateProductRequestSchema": {
+                "title": "Create Product",
+                "description": "Create Product request",
+                "required": [
+                    "name",
+                    "description",
+                    "price"
+                ],
+                "properties": {
+                    "name.hy": {
+                        "title": "Name in Armenian.",
+                        "type": "string",
+                        "example": "Name in Armenian"
+                    },
+                    "name.ru": {
+                        "title": "Name in Russian.",
+                        "type": "string",
+                        "example": "Name in Russian"
+                    },
+                    "name.ena": {
+                        "title": "Name in English.",
+                        "type": "string",
+                        "example": "Name in English"
+                    },
+                    "description.hy": {
+                        "title": "Desciption in Armenian.",
+                        "type": "string",
+                        "example": "Desciption in Armenian"
+                    },
+                    "description.ru": {
+                        "title": "Desciption in Russian.",
+                        "type": "string",
+                        "example": "Desciption in Russian"
+                    },
+                    "description.ena": {
+                        "title": "Desciption in English.",
+                        "type": "string",
+                        "example": "Desciption in English"
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "1000"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateProductRequestMessagesSchema": {
+                "title": "Create Product",
+                "description": "Create Product validation messages",
+                "properties": {
+                    "name.hy": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "name.ru": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "name.en": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "description.hy": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "description.ru": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "description.en": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "price": {
+                        "type": "string",
+                        "example": [
+                            "The count field is required.",
+                            "The count should be a numeric."
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateProductRequestSchema": {
+                "title": "Update Request",
+                "description": "Update Request request",
+                "properties": {
+                    "name.hy": {
+                        "title": "Name in Armenian.",
+                        "type": "string",
+                        "example": "Name in Armenian"
+                    },
+                    "name.ru": {
+                        "title": "Name in Russian.",
+                        "type": "string",
+                        "example": "Name in Russian"
+                    },
+                    "name.ena": {
+                        "title": "Name in English.",
+                        "type": "string",
+                        "example": "Name in English"
+                    },
+                    "description.hy": {
+                        "title": "Desciption in Armenian.",
+                        "type": "string",
+                        "example": "Desciption in Armenian"
+                    },
+                    "description.ru": {
+                        "title": "Desciption in Russian.",
+                        "type": "string",
+                        "example": "Desciption in Russian"
+                    },
+                    "description.ena": {
+                        "title": "Desciption in English.",
+                        "type": "string",
+                        "example": "Desciption in English"
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "1000"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateProductRequestMessagesSchema": {
+                "title": "Update Product",
+                "description": "Update Product validation messages",
+                "properties": {
+                    "name.hy": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "name.ru": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "name.en": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "description.hy": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "description.ru": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "description.en": {
+                        "type": "string",
+                        "example": [
+                            "The id field is required.",
+                            "The selected id is invalid."
+                        ]
+                    },
+                    "price": {
+                        "type": "string",
+                        "example": [
+                            "The count field is required.",
+                            "The count should be a numeric."
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "CategoryResourceSchema": {
+                "title": "Category Resource",
+                "description": "Category resource",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "e904b43e-7bcf-3244-aac0-38691e72f0e1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Product Name"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductResourceSchema": {
+                "title": "Product Resource",
+                "description": "Product resource",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "e904b43e-7bcf-3244-aac0-38691e72f0e1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Product Name"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Description of this product."
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "15000.00"
+                    },
+                    "category": {
+                        "properties": {
+                            "main": {
+                                "$ref": "#/components/schemas/CategoryResourceSchema"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "422": {
+                "description": "Validation Errors",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Validation message."
+                                },
+                                "errors": {
+                                    "$ref": "#/components/schemas/CreateProductRequestMessagesSchema"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "423": {
+                "description": "Validation Errors",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Validation message."
+                                },
+                                "errors": {
+                                    "$ref": "#/components/schemas/UpdateProductRequestMessagesSchema"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Products",
+            "description": "API Endpoints of Products"
+        }
+    ]
+}
