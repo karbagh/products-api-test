@@ -1,14 +1,14 @@
-## О приложении
-Currency Exchange API - это надежный инструмент для получения актуального курса валюты от Центрального Банка. Мы предоставляем простой и удобный способ получения данных о курсах валют, которые обновляются ежедневно. Наш API обеспечивает быстрый и безопасный доступ к этой информации, что позволяет вашему приложению интегрировать ее с легкостью.
+## About the Application
 
-- [Документация REST API](http://api.exchange-rate.test/documentation).
+Currency Exchange API is a reliable tool for obtaining up-to-date exchange rates from the Central Bank. We provide a simple and convenient way to access exchange rate data, which is updated daily. Our API ensures fast and secure access to this information, allowing your application to integrate it with ease.
 
-## Конфигурация
+- [REST API Documentation](http://api.exchange-rate.test/documentation).
 
-В файле окружения (.env) проекта содержатся все настройки, необходимые для его функционирования, включая конфигурацию базы данных, информацию о проекте (название, URL), параметры электронной почты и Redis. Чтобы задать значения настроек, нужно внести соответствующие изменения в этот файл.
+## Configuration
 
+The environment file (.env) of the project contains all the settings necessary for its operation, including database configuration, project information (name, URL), email parameters, and Redis. To set the values of these settings, you need to make the appropriate changes to this file.
 
-## Установка
+## Installation
 
 ```
     docker-compose build
@@ -18,11 +18,20 @@ Currency Exchange API - это надежный инструмент для по
     docker-compose up -d
 ```
 
+In a local environment:
+
 ```
-    cp .env.example .env
+    cp .env.local .env
 ```
 
-Для установки проекта на вашем в контейнере, выполните простую команду, которая автоматизирует все необходимые процессы вместо вас.
+
+In a production environment:
+
+```
+    cp .env.prod.example .env
+```
+
+To set up the project in your container, run the following commands to automate all necessary processes:
 
 ```
     composer install
@@ -31,3 +40,70 @@ Currency Exchange API - это надежный инструмент для по
 ```
     php artisan app:init
 ```
+## This Command Includes:
+- **[Installing Composer Packages](https://laravel.com/docs/4.2#install-composer)**
+- **[Generating a Project Key.](https://laravel.com/docs/7.x/installation#configuration)**
+- **[Running Database Migrations.](https://laravel.com/docs/9.x/migrations#running-migrations)**
+- **[Seeding the Database with Default Values.](https://laravel.com/docs/9.x/seeding#running-seeders)**
+- **Optimization.**
+- **Copying the example environment file to the environment file.**
+- **[Generating Swagger Documentation.](https://swagger.io/)**
+
+## Repository Overview
+
+Here’s an overview of the directory and file structure:
+
+```
+├── app
+├── bootstrap
+├── config
+│   ├── admin.php
+│   ├── app.php
+│   ├── auth.php
+│   ├── backup.php
+│   ├── broadcasting.php
+│   ├── cache.php
+│   ├── cors.php
+│   ├── database.php
+│   ├── filesystems.php
+│   ├── hashing.php
+│   ├── l5-swagger.php
+│   └── logging.php
+│   └── mail.php
+│   └── queue.php
+│   └── sanctum.php
+│   └── services.php
+│   └── session.php
+│   └── translation-manager.php
+│   └── view.php
+├── database
+│   └── factories
+│   └── migrations
+│   └── seeders
+├── public
+├── resources
+├── routes
+├── storage
+└── tests
+├── .env.example
+├── .gitignore
+├── composer.json
+├── composer.loc
+├── data-preparation
+├── README.md
+└── phpunit.xml
+```
+
+## Configuration
+
+The project includes an environment file (.env) that provides access to the project settings. These settings include database configuration, project data (name, URL), email settings, and Redis. To set the configuration values, edit this file.
+
+## About Me
+
+- **Contacts**
+    - ***[LinkedIn](https://www.linkedin.com/in/karbagh/)***
+    - ***[hh](https://hh.ru/resume/edbb565aff0b5cc6070039ed1f376c654d6c6e)***
+- **Phone**
+    - ***+ (374) 99 93 44 49***
+- **Email**
+    - ***[karenbaghdasaryan598@gmail.com](mailto:karenbaghdasaryan598@gmail.com)***
